@@ -20,9 +20,5 @@ Link to your social media connections, too. This theme is set up to use <a href=
   <a href="https://github.com/{{ site.github_username }}" target="_blank"><i class="fa fa-github-square"></i></a>
   <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank"><i class="fa fa-linkedin-square"></i></a>
   <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank"><i class="fa fa-twitter-square"></i></a>
+  <a href="https://youtube.com/{{ site.youtube_username }}" target="_blank"><i class="fa fa-youtube-square"></i></a>
 </span>
-
-<div class="col three caption">
-  You can even add a little note about which of these is the best way to reach you.
-</div>
-
