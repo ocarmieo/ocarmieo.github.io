@@ -31,17 +31,12 @@ GEM
     mercenary (0.3.6)
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
-    posix-spawn (0.3.12)
-    pygments.rb (0.6.3)
-      posix-spawn (~> 0.3.6)
-      yajl-ruby (~> 1.2.0)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rouge (1.11.1)
     safe_yaml (1.0.4)
     sass (3.4.22)
-    yajl-ruby (1.2.1)
 
 PLATFORMS
   ruby
@@ -50,7 +45,6 @@ DEPENDENCIES
   jekyll (~> 3.3)
   jekyll-feed
   jekyll-paginate
-  pygments.rb
 
 RUBY VERSION
    ruby 2.0.0p648
