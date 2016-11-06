@@ -142,6 +142,10 @@
     }
 }
 
+.post {
+    margin-top: $vertical-spacing-unit;
+}
+
 .post-meta {
   .tag {
     &:hover {
@@ -355,6 +359,6 @@
     background-position: 0 100%;
     background-repeat: no-repeat;
     width: 100%;
-    height: 400px;
+    height: $header-image-height;
     opacity: $image-opacity;
 }
