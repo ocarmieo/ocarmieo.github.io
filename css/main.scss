@@ -1,0 +1,61 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+
+$base-font-family: Helvetica, sans-serif;
+$base-font-size: 16px;
+$small-font-size: $base-font-size * 0.875;
+
+$spacing-unit: 30px;
+
+$base-line-height: 1.5em;
+$horizontal-spacing-unit: 50px;
+$vertical-spacing-unit: 40px;
+$nav-height: 56px;
+
+/* portfolio tinkering */
+$img_spacing: 5px;
+$img_height: 275px;
+$caption_font_size: 12px;
+$caption_color: #AEAEAE;
+
+// https://color.adobe.com/Green-Dark-Blue-color-theme-3854662/edit/?copy=true&base=2&rule=Custom&selected=1&name=Copy%20of%20Green%20%20Dark%20Blue&mode=rgb&rgbvalues=1,1,1,0.682353,0.682353,0.682353,0.901961,0.298039,0.4,0.176471,0.243137,0.313726,0.105882,0.737255,0.607843&swatchOrder=0,1,2,3,4
+$red: #E64C66;
+$blue: #375d81;
+$green: #1BBC9B;
+
+$background-color: #FFFFFF;
+
+$grey-color: #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark: darken($grey-color, 25%);
+$code-background-color: #f0f0f0;
+
+$code-font-size: 12px;
+$table-font-size: 12px;
+
+$text-color: #666;
+
+/* Set theme color *************************/
+$theme-color: $blue;
+$highlight-color: $blue;
+
+$on-palm: 600px;
+$on-laptop: 800px;
+
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+@mixin transition($property) {
+    transition: $property 150ms linear;
+}
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import "base";
+@import "layout";
+@import "syntax-highlighting";

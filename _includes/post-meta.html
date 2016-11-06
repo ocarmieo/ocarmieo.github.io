@@ -1,0 +1,12 @@
+<p class="post-meta">
+  {{ include.post.date | date: site.date_format_long }}
+  {% if include.post.author %} • {{ include.post.author }}{% endif %}
+  {% if include.post.tags %}
+    •
+    <span class="tags">
+      {% for tag in include.post.tags %}
+        <a class="tag" href="/tags/#{{ tag }}">#{{ tag }}</a>
+      {% endfor %}
+    </span>
+  {% endif %}
+</p>

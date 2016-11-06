@@ -1,0 +1,54 @@
+year: 2016
+title: Carmen Lai
+email: cglai8+website@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://carmenlai.com/"
+twitter_username: carm_lai
+github_username: ocarmieo
+linkedin_username: carmenlai
+
+date_format_long: "%B %-d, %Y — %H:%M %p"
+
+# Pagination
+paginate: 3
+paginate_path: "/blog/page:num/"
+
+# Collections
+collections:
+  portfolio:
+    output: true
+    permalink: /portfolio/:path/
+  music:
+    output: true
+    permalink: /music/:path/
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      author: "Carmen Lai"
+  -
+    scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      author: "Carmen Lai"
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+highlighter: pygments
+gems:
+  - jekyll-feed
+  - jekyll-paginate
+exclude:
+  - Gemfile
+  - Gemfile.lock
