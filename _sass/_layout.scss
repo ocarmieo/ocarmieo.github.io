@@ -91,11 +91,9 @@
     border-top: 1px solid $grey-color-dark;
     font-size: 10px;
     background-color: $grey-color-dark;
-    padding: 2px;
     color: #AEAEAE;
     left: 0px;
     bottom: 0px;
-    height: 25px;
     width: 100%;
     text-align: center;
     a {
@@ -149,11 +147,23 @@
             vertical-align: middle;
         }
         .post-list-item-body {
-            width: 65%;
+            width: calc(65% - 15px);
         }
         .post-image {
-            width: 30%;
+            max-width: 30%;
             margin-right: 15px;
+            max-height: 250px;
+            margin: 0 auto;
+        }
+        @include media-query($on-palm) {
+            .post-list-item-body {
+                width: 100%;
+            }
+            .post-image {
+                display: block;
+                max-width: 100%;
+            }
+
         }
         hr {
             margin-top: $vertical-spacing-unit / 2;
