@@ -15,9 +15,9 @@
 }
 
 .site-title {
-    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     line-height: $nav-height;
-    letter-spacing: -1px;
     margin-bottom: 0;
 
     &:hover {
@@ -31,6 +31,7 @@
 
     .page-link {
         line-height: $base-line-height;
+        letter-spacing: 2px;
 
         // Gaps between nav items, but not on the first one
         &:not(:first-child) {
@@ -90,14 +91,14 @@
     background-color: $grey-color-dark;
     padding: 2px;
     color: #AEAEAE;
-    position: fixed;
     left: 0px;
     bottom: 0px;
     height: 25px;
     width: 100%;
     text-align: center;
-    a:hover {
-      color: $highlight-color;
+    a {
+      text-decoration: underline;
+      color: #AEAEAE;
     }
 }
 
