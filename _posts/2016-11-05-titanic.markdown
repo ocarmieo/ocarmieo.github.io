@@ -14,8 +14,8 @@ In this post, I use the Titanic dataset from Kaggle (a relatively clean and simp
     - What are we trying to answer?
     - What variables should be considered?
     - __Explain vs. Predict__ - this guides what __models__ and __features__ we should think about using
-        - __Predict__: If we are preparing a presentation to explain a key performance metric to the leadership team, we probably want to choose a more interpretable model like logistic regression. We may also want to limit features to only those that are actionable for the business, etc.
-        - __Explain__: If we are trying to win a Kaggle competition, we are more interested in _accurate_ predictions and may choose a less interpretable model (random forest, gradient boosting, etc.) and include any feature if it helps our accuracy even a slight bit
+        - __Explain__: If we are preparing a presentation to explain a key performance metric to the leadership team, we probably want to choose a more interpretable model like logistic regression. We may also want to limit features to only those that are actionable for the business, etc.
+        - __Predict__: If we are trying to win a Kaggle competition, we are more interested in _accurate_ predictions and may choose a less interpretable model (random forest, gradient boosting, etc.) and include any feature if it helps our accuracy even a slight bit
 2. Data Cleaning
     - Identify missing data - is it missing due to randomness or is it meaningful?
     - Data type conversion - are features that are integer type actually numeric in nature (ex: PassengerId)?
