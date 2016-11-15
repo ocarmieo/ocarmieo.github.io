@@ -5,10 +5,9 @@ permalink: /about/
 ---
 
 <img class="right profile-picture" src="/img/prof_pic.jpg">
-Write your biography here. Tell the world about yourself. Link to your favorite <a href="http://reddit.com" target="blank">subreddit</a>. You can put a picture in, too. The code is already in, just name your picture "prof_pic.jpg" and put it in the img folder.
+<b>WELCOME</b>
 
-Link to your social media connections, too. This theme is set up to use <a href="http://fortawesome.github.io/Font-Awesome/" target="blank">Font Awesome icons</a>, like the ones below. Add your facebook, twitter, linkedin, or just disable all of them.
-
+Hi! I'm Carmen Lai. I am a data scientist in San Francisco with a background in neuroscience and industry experience in marketing analytics and strategy consulting. At 23andMe, I analyzed consumer data to draw insights for Product and Marketing teams. In my blog, I will share what I have learned from my career transition into data science, and use data to dive into some of my interests like music, psychology, and technology.
 
 <br/>
 <hr class="bio-hr"/>

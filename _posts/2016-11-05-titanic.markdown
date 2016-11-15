@@ -413,7 +413,8 @@ Let's look at __women and children__ first. Indeed, women and children had a hig
 
 
 ```python
-sns.factorplot(x="PersonType", hue="Survived", data=train, kind="count", size=6)
+ax = sns.factorplot(x="PersonType", hue="Survived", data=train, kind="count", size=6)
+ax.set(ylabel='Number of Passengers')
 plt.title('Survival by PersonType');
 ```
 
@@ -429,6 +430,7 @@ For plotting numerical data, I prefer KDE plots over histograms for an initial l
 ```python
 fg = sns.FacetGrid(data=train, hue="Survived", aspect=1.5, size=6)
 fg.map(sns.kdeplot, "Age", shade=True)
+fg.set(ylabel='Percent of Passengers')
 fg.add_legend()
 plt.title('Age Distribution by Survival');
 ```
@@ -437,11 +439,12 @@ plt.title('Age Distribution by Survival');
 ![png](/img/titanic_eda/output_27_0.png)
 
 
-__So did Rose survive because she was a woman, or because she was rich?__ Let's have a look at passenger class. Here we see that 1st class passengers who paid a higher fare had greater chance of survival than the other classes.
+__Did Rose survive because she was a woman, or because she was in the upper class?__ Let's have a look at passenger class. Here we see that 1st class passengers, or those who paid a higher fare, had greater chance of survival than the other classes.
 
 
 ```python
-sns.factorplot(x="Pclass", hue="Survived", data=train, kind="count", size=6, palette="Set2")
+ax = sns.factorplot(x="Pclass", hue="Survived", data=train, kind="count", size=6, palette="Set2")
+ax.set(ylabel='Number of Passengers')
 plt.title('Survival by Class');
 ```
 
@@ -453,6 +456,7 @@ plt.title('Survival by Class');
 ```python
 fg = sns.FacetGrid(data=train, hue="Survived", aspect=1.5, size=6, palette="Set2")
 fg.map(sns.kdeplot, "Fare", shade=True)
+fg.set(ylabel='Percent of Passengers')
 fg.add_legend()
 plt.title('Fare Distribution by Survival')
 plt.xlim([-50, 300]);
@@ -466,7 +470,8 @@ Here are a few ways to plot interactions (Person Type vs. Passenger Class in thi
 
 
 ```python
-sns.factorplot(x="Pclass", y="Survived", hue="PersonType", data=train, kind="bar", aspect=1.5, size=6, palette="Set2")
+ax = sns.factorplot(x="Pclass", y="Survived", hue="PersonType", data=train, kind="bar", aspect=1.5, size=6, palette="Set2")
+ax.set(ylabel='Percent of Passengers')
 plt.title('Survival by Class and Person Type');
 ```
 
@@ -530,7 +535,8 @@ From our Title feature that we extracted from passenger names - are royalty or m
 
 
 ```python
-sns.factorplot(x='Title', hue='Survived', data=train, kind='count', aspect=1.5, size=6)
+ax = sns.factorplot(x='Title', hue='Survived', data=train, kind='count', aspect=1.5, size=6)
+ax.set(ylabel='Number of Passengers')
 plt.title('Survival by Title');
 ```
 
@@ -542,7 +548,8 @@ Did bigger families have a higher chance of survival than single travelers? Yes 
 
 
 ```python
-sns.factorplot(x='TotalFamily', y='Survived', data=train, kind='bar', aspect=1.5, size=6, palette="Greens")
+ax = sns.factorplot(x='TotalFamily', y='Survived', data=train, kind='bar', aspect=1.5, size=6, palette="Greens")
+ax.set(ylabel='Percent of Passengers')
 plt.title('Survival by Total Family Size (not including self)');
 ```
 
@@ -550,4 +557,4 @@ plt.title('Survival by Total Family Size (not including self)');
 ![png](/img/titanic_eda/output_43_0.png)
 
 
-That wraps up EDA. In my next post, I will take this data through a machine learning workflow. The focus of the post will be on _process_ - the journey and not the destination 8) - so I would look at additional resources if you are trying to make a dent on the Kaggle leaderboard. Stay tuned!
+That wraps up EDA. In my next post, I will take this data through a machine learning workflow. The focus of the post will be on _process_ - the journey and not the destination 8) - so I would seek out additional resources if your goal is to make a dent on the Kaggle leaderboard. Stay tuned!
