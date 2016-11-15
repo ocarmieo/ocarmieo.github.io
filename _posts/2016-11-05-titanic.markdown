@@ -22,7 +22,7 @@ In this post, I use the Titanic dataset from Kaggle (a relatively clean and simp
     - Mapping features for easier modeling - change Yes/No to 1/0, categorical features => dummy variables, etc.
 3. Plotting
     - Identify potential correlations in features
-    - Select features to include in model
+    - Narrow down features to include in model
     - Form hypotheses to inform feature engineering that may be needed
 
 ### 1. Question
