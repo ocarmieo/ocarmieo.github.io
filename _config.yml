@@ -11,6 +11,7 @@ twitter_username: carm_lai
 github_username: ocarmieo
 linkedin_username: carmenlai
 youtube_username: carmenggg
+disqus_shortname: carmenlai
 
 date_format_long: "%B %-d, %Y — %H:%M %p"
 
@@ -34,6 +35,7 @@ defaults:
       type: "posts"
     values:
       author: "Carmen Lai"
+      comments: true
   -
     scope:
       path: "_posts"
