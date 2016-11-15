@@ -100,6 +100,12 @@
       text-decoration: underline;
       color: #AEAEAE;
     }
+    .break {
+        display: none;
+        @include media-query($on-tiny) {
+            display: block;
+        }
+    }
 }
 
 /**
@@ -125,7 +131,10 @@
  * Page content   **********************************************************
  */
 .page-content {
-    padding: 57px 0;
+    padding: 57px 0 $vertical-spacing-unit;
+    @include media-query($on-palm) {
+        padding-bottom: $vertical-spacing-unit / 2;
+    }
 
     /* VERTICAL PADDING FOR TITLE ON EVERY PAGE */
 }
@@ -141,6 +150,10 @@
 
     > li {
         margin-bottom: $vertical-spacing-unit;
+        @include media-query($on-palm) {
+            margin-bottom: $vertical-spacing-unit / 2;
+        }
+
         .post-list-item-body,
         .post-image {
             display: inline-block;
@@ -167,6 +180,9 @@
         }
         hr {
             margin-top: $vertical-spacing-unit / 2;
+            @include media-query($on-palm) {
+                margin-bottom: $vertical-spacing-unit / 4;
+            }
         }
     }
 }
