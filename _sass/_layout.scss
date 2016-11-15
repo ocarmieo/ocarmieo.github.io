@@ -220,7 +220,7 @@
     color: $theme-color;
     font-size: 24px;
     letter-spacing: -1px;
-    line-height: 1;
+    line-height: 1.2;
 
     @include media-query($on-laptop) {
         font-size: 24px;
