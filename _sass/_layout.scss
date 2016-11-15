@@ -143,6 +143,21 @@
 
     > li {
         margin-bottom: $vertical-spacing-unit;
+        .post-list-item-body,
+        .post-image {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .post-list-item-body {
+            width: 65%;
+        }
+        .post-image {
+            width: 30%;
+            margin-right: 15px;
+        }
+        hr {
+            margin-top: $vertical-spacing-unit / 2;
+        }
     }
 }
 
@@ -177,12 +192,12 @@
 
 .post-title {
     color: $theme-color;
-    font-size: 36px;
+    font-size: 24px;
     letter-spacing: -1px;
     line-height: 1;
 
     @include media-query($on-laptop) {
-        font-size: 36px;
+        font-size: 24px;
     }
 }
 

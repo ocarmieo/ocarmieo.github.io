@@ -3,6 +3,7 @@ title: 'Exploratory Data Analysis Workflow: Titanic Dataset'
 layout: post
 date: 2016-11-05 21:29:04
 tags: [pandas, seaborn, data-cleaning, plotting]
+image: /img/titanic_eda/output_32_0.png
 ---
 
 In this post, I use the Titanic dataset from Kaggle (a relatively clean and simple dataset) to walk through an exploratory data analysis (EDA) work flow. I primarily use `pandas` dataframes to manipulate the data, and `seaborn` and `matplotlib` for plotting. Prior to plotting or even looking at the data, I like to make sure that I am clear on the question, and form some initial hypotheses as to what may explain or predict the outcome variable. This will guide both the feature engineering and plotting that I will do in my EDA.
