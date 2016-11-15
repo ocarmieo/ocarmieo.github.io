@@ -57,7 +57,9 @@ $on-laptop: 800px;
     transition: $property 150ms linear;
 }
 
+
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "base";
 @import "layout";
 @import "syntax-highlighting";
+@import "header";

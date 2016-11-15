@@ -1,0 +1,29 @@
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animated.slideDown {
+  animation-name: slideDown;
+  animation-duration: 300ms;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.animated.slideUp {
+  animation-name: slideUp;
+  animation-duration: 300ms;
+}
