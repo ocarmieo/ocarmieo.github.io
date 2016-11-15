@@ -210,6 +210,9 @@
     &:not(.MathJax_Display) > div {
       overflow-x: scroll;
     }
+    img {
+        max-width: 100%;
+    }
 }
 
 .post-meta {
