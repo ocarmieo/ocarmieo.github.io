@@ -8,28 +8,21 @@ image: /img/churn_ml/output_63_0.png
 
 In this post, I will be walking through a machine learning workflow for a customer churn prediction problem. The data is from a ride-sharing company and was pulled on July 1, 2014. Our objective for this post is to ___predict___ customers who are likely to churn so that the company can prevent them from doing so with offers/incentives using `sklearn`.
 
-- _I will extend this example in a separate post later to also help us __explain__ what features may be driving customer churn, which may be equally if not more important for a business than predicting with a fancy model. The next post will be about interpreting model coefficients and feature importances using `statsmodels` and `sklearn`._
+- I will extend this example in a separate post later to also help us __explain__ what features may be drivers of customer churn, by interpreting model coefficients and feature importances.
 
 For the purposes of this current post, our goal is to predict activity/churn with [optimal](#Metrics-for-Model-Comparison) results.
 
 ### Background
 
-A typical machine learning workflow is shown in the image below. There are no universally correct steps to follow - this blog post is just one example. The "art" in the process is mostly at the squiggly part of the line below, as you could go back and forth with testing different models, features, hyperparameters, and error measures. If there is one rule to remember, it's to __split your data__.
+A typical machine learning workflow is shown in the image below. There are no universally correct steps to follow and this blog post is just one example. The "art" in the process is at the squiggly part of the line below, as you could go back and forth with testing different models, features, hyperparameters, and error measures.
 
-It is important to hold out sets of your data that will remain __"unseen"__ by the model at each decision point in order to get an accurate measure of model performance that is not inflated. If we used all of our data to train our model from the start, our model would learn that piece of training data really well (__overfitting__), and may fail to ___generalize___ to other data it has not seen. As your model becomes more complex, training error will monotonically increase while test error will increase to a certain point and then start to decrease once the model starts to overfit.
+If there were a rule, it would be to __split the data__. It is important to hold out sets of your data that will remain __"unseen"__ by the model at each decision point in order to get a measure of model performance that is not inflated. If we used all of our data to train our model from the start, our model would learn that piece of training data really well (__overfitting__), but may fail to __generalize__ to other data it has not seen. As the model becomes more complex, training error will monotonically increase while test error will increase to a certain point, and then start to decrease once the model starts to overfit.
 
 ![train_val_test](/img/churn_ml/train_val_test.png)
 
 __Bias-Variance trade-off and overfitting__
 <br>
 <img src="/img/churn_ml/bias_variance.png" width="400">
-
-Here's an analogy that stuck from an instructor at Galvanize:
-
-
-> Timmy is learning multiplication. At school, he learns that 3x3 = 9 and 5x5 = 25. The teacher quizzes him on these problems and he gets 100% correct - yay! He goes home and tells his mom that he's learned all there is to know about multiplication. To validate 😏, his mom asks him what 12x13 is. Timmy doesn't know the answer.
-> 
->The issue here is that Timmy learned (or essentially memorized) very specific cases of multiplication, and thought that he knew because he got a 100% on his school test given those problems (__high training accuracy__). However, when his mom gave him a new "unseen" problem, he could not generalize (__low test accuracy__) because he has not truly learned more general rules of multiplication.
 
 ### Tutorial Outline
 
@@ -46,28 +39,21 @@ For this analysis, I will use `pandas` for data manipulation, `matplotlib` and `
 
 
 ```python
-# Suppress deprecation warnings
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
-```
-
-
-```python
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from pandas.tools.plotting import scatter_matrix
-from sklearn_pandas import DataFrameMapper, cross_val_score
-from sklearn.preprocessing import StandardScaler, LabelEncoder, LabelBinarizer
-from sklearn.feature_extraction.text import CountVectorizer
-import datetime
-import numpy as np
-from sklearn.pipeline import Pipeline
-from sklearn.metrics import roc_auc_score, f1_score, confusion_matrix
 from sklearn.cross_validation import train_test_split
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score, f1_score, confusion_matrix
 from sklearn.model_selection import GridSearchCV
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, LabelEncoder, LabelBinarizer
+from sklearn_pandas import DataFrameMapper, cross_val_score
+import datetime
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
 %matplotlib inline
 
 # Set font size for plotting
@@ -913,11 +899,11 @@ pd.concat([x, dummies], axis=1)
 
 #### Using a pipeline for data transformations and scaling
 
-__Transformations__ - another way to do the above is by using a transformer from `sklearn.preprocessing` called `LabelBinarizer`. Rather than doing these transformations one by one and then stitching everything back together, I am going to create a pipeline using a combination of [`sklearn-pandas`](https://github.com/paulgb/sklearn-pandas) and [`sklearn's pipeline`](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) to organize the steps in my data transformations. `sklearn-pandas` is great for doing __transformations on specific columns__ from a dataframe. More on the differences between the two libraries [here](https://stackoverflow.com/questions/40352176/whats-the-difference-between-sklearn-pipeline-and-dataframemapper).
+__Transformations__ - another way to do the above is by using a transformer from `sklearn.preprocessing` called `LabelBinarizer`. Rather than doing these transformations one by one and then stitching everything back together, I am going to create a pipeline using a combination of [`sklearn-pandas`](https://github.com/paulgb/sklearn-pandas) and [`sklearn's pipeline`](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) to organize various data transformations. `sklearn-pandas` is great for doing __transformations on specific columns from a dataframe__. More on the differences between the two libraries [here](https://stackoverflow.com/questions/40352176/whats-the-difference-between-sklearn-pipeline-and-dataframemapper).
 
-__Scaling__ or standardizing your data is important when your variables have units on different orders of magnitude - you want to standardize values so that variables with a bigger unit don't drown out smaller ones. _(Example: determining key predictors of how quickly a house will sell - number of bedrooms vs. sale price in dollars)_
+__Scaling__ your data is important when your variables have units on different orders of magnitude. You want to standardize values so that variables with a bigger unit don't drown out smaller ones. _(Example: determining key predictors of how quickly a house will sell - number of bedrooms vs. sale price in dollars)_
 
-It is good practice to use a pipeline for machine learning because it
+It is good practice to use a pipeline for machine learning because it:
 1. Keeps track of all the transformations and scaling that you do on your data
 2. Easily __applies any processing you did on your training set to your test set__ (remember these from a few paragraphs ago?)
 
@@ -940,7 +926,7 @@ mapper = DataFrameMapper([
 ])
 ```
 
-Here's an example of a pipeline that we'll incorporate later in our modeling.
+Here's an example of a pipeline that we'll incorporate later in our modeling, for logistic regression.
 
 
 ```python
@@ -973,19 +959,23 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 
 #### __Metrics for Model Comparison__
 
-1. __Test accuracy__ - how many times the model gets it right (true positives and true negatives). We have relatively balanced classes with active vs. churn users, but if we had more imbalanced classes (like in the case of predicting a rare disease), we may want to consider both precision and recall rather than just accuracy. A good measure that accounts for both precision and recall is the F1 score. For our example, we will use accuracy.
+1. __Test accuracy__ - how many times the model gets it right (true positives and true negatives)
+- We have relatively balanced classes with active vs. churn users so accuracy is okay to use, but if we had more imbalanced classes (like in the case of predicting a rare disease), we may want to consider both precision and recall (F1 score) rather than just accuracy.
 
-2. __ROC plot and AUC (area under the curve)__ - shows the trade-off between __true positive rate (sensitivity)__ and __false positive rate__. We will use this to compare models. Typically, the model with a higher AUC value (a curve that is closer towards the upper left corner of the plot) is the "better" model and you want to pick the threshold at the elbow of the curve. However, the "better" model could also depend on our __tolerance for false positives__. In the example below, the red and black curves are from 2 different models. If we require a lower false positive rate, the red model would be the better choice. If we don't mind a higher false positive rate, the black model may be better. [See below for our churn prediction ROC plot.](#roc-plot)
+2. __ROC plot and AUC (area under the curve)__ - shows the trade-off between __true positive rate (sensitivity)__ and __false positive rate (1 - specificity)__.
+- We will use this to compare models. Typically, the model with a higher AUC (the curve that is tucked closer towards the upper left corner) is the "better" model and you want to pick the threshold at the elbow. However, the "better" model could also depend on our __tolerance for false positives__. In the example below, the red and black curves are from 2 different models. If we require a lower false positive rate, the red model would be the better choice. If we don't mind a higher false positive rate, the black model may be better. [See below for our churn prediction ROC plot.](#roc-plot)
 
 <img src="/img/churn_ml/roc_example.jpg" width="350">
 
-3. __Profit curve__ - takes into account dollar costs/benefits associated with true positives, false positives, true negatives, and false negatives. A profit curve can help optimize overall profit and help you select the best __model__ and __predicted probability threshold__. What's the cost to the company of your model predicts incorrectly? What's the added value if it predicts correctly? etc. [See more detail below for our churn prediction example.](#profit-curve)
+3. __Profit curve__ - takes into account dollar costs/benefits associated with true positives, false positives, true negatives, and false negatives.
+- A profit curve can help optimize overall profit and help you select the best __model__ and __predicted probability threshold__. What's the cost to the company of your model predicts incorrectly? What's the added value if it predicts correctly? etc. [See more detail below for our churn prediction example.](#profit-curve)
 
 <img src="/img/churn_ml/profit_example.png" width="400">
 
+#### __Function Definitions__
 Accuracy is already available through `sklearn`. We will have to write functions for the ROC plot and profit curves.
 
-#### ROC Plot Functions
+ROC plot functions:
 
 
 ```python
@@ -1035,7 +1025,7 @@ def plot_roc_curve(pipeline, y_pred, y_proba, y_test):
     plt.plot(fpr, tpr, label='{}, AUC: {}'.format(model_name, auc))
 ```
 
-#### Profit Curve Functions
+Profit curve functions:
 
 
 ```python
@@ -1076,7 +1066,7 @@ def plot_profit_curve(pipeline, costbenefit_mat, y_proba, y_test):
 ```
 
 #### Model Classifier Object
-I will store our models in a __class object__ for easier model comparison. Note that it's generally good to start with a simple model (logistic regression) before jumping into more complex ones (random forest) to establish baseline performance. For instance, in some cases, simply predicting the outcome label with the mean of a feature could potentially perform better than a fancy random forest model.
+I will use a __class object__ to store our models for easier comparison. It's generally good to start with a simple model (logistic regression) before jumping into more complex ones (random forest) to establish baseline performance. In some cases, simply predicting the outcome label with the mean of a feature could potentially perform better than a fancy random forest model.
 
 
 ```python
@@ -1161,7 +1151,10 @@ class Classifiers(object):
         plt.show()        
 ```
 
-Those are all the function definitions. __Now let's compare 3 models: logistic regression, random forest, and gradient boosting.__
+__Now let's compare 3 models:__
+- Logistic regression
+- Random forest
+- Gradient boosting
 
 #### 1. Train the models
 
@@ -1244,7 +1237,7 @@ clfs.plot_profit_curve(costbenefit_mat, X_test, y_test)
 ![png](/img/churn_ml/output_68_0.png)
 
 
-__Gradient boosting seems to be the best performer__ based on all 3 of our metrics: highest test accuracy, ROC curve with highest AUC, and highest profit. This is without any model tuning.
+__Without any model tuning, gradient boosting seems to be the best performer__ based on all 3 of our metrics: highest test accuracy, ROC curve with highest AUC, and highest profit.
 
 ### 6. Hyperparameter Tuning
 
@@ -1308,7 +1301,7 @@ best_rf_model = rf_grid.best_estimator_
 best_rf_params = rf_grid.best_params_
 ```
 
-Now we can repeat what we did above with the best parameters.
+Now we can repeat what we did above with the best parameters from our grid search.
 
 
 ```python
