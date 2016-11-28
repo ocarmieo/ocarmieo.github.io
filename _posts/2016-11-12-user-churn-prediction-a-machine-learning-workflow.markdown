@@ -959,14 +959,16 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 
 1. __Test accuracy__ - how many times the model gets it right (true positives and true negatives)
 - We have relatively balanced classes with active vs. churn users so accuracy is okay to use, but if we had more imbalanced classes (like in the case of predicting a rare disease), we may want to consider both precision and recall (F1 score) rather than just accuracy.
+
 2. __ROC plot and AUC (area under the curve)__ - shows the trade-off between __true positive rate (sensitivity)__ and __false positive rate (1 - specificity)__.
 - We will use this to compare models. Typically, the model with a higher AUC (the curve that is tucked closer towards the upper left corner) is the "better" model and you want to pick the threshold at the elbow. However, the "better" model could also depend on our __tolerance for false positives__. In the example below, the red and black curves are from 2 different models. If we require a lower false positive rate, the red model would be the better choice. If we don't mind a higher false positive rate, the black model may be better.
+- [See below for our churn prediction ROC plot.](#roc-plot)
 <img src="/img/churn_ml/roc_example.jpg" width="350">
-[See below for our churn prediction ROC plot.](#roc-plot)
+
 3. __Profit curve__ - takes into account dollar costs/benefits associated with true positives, false positives, true negatives, and false negatives.
 - A profit curve can help optimize overall profit and help you select the best __model__ and __predicted probability threshold__. What's the cost to the company of your model predicts incorrectly? What's the added value if it predicts correctly? etc.
+- [See more detail below for our churn prediction example.](#profit-curve)
 <img src="/img/churn_ml/profit_example.png" width="400">
-[See more detail below for our churn prediction example.](#profit-curve)
 
 #### __Function Definitions__
 Accuracy is already available through `sklearn`. We will have to write functions for the ROC plot and profit curves.
