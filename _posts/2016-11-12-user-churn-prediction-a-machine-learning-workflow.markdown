@@ -1208,17 +1208,17 @@ The cost benefit matrix defined here is in dollars, in the following format:
 
 __Cost benefit matrix__
 
-We will assume that if the model predicts that a user will churn, we will spend `$150` dollars retaining them (in promotions, marketing, etc.). If the model does not predict when a user churns, we will lose an estimated `$325` in customer lifetime value. If we successfully identify a customer who will churn and manage to retain them, we will gain in customer lifetime value minus the cost of retaining them (`$325` - `$150`).
+We will assume that if the model predicts that a user will churn, we will spend `$150` dollars retaining them (in promotions, marketing, etc.). If we successfully identify a customer who will churn and manage to retain them, we will gain in customer lifetime value minus the cost of retaining them (`$325` - `$150`).
 
 ||Actual +|Actual -|
 |-----------|------------------------|----------------------|
-|__Predicted +__|Correctly Predict Active<br>__\$0__|Falsely Predict Active<br>__-\$325__|
+|__Predicted +__|Correctly Predict Active<br>__\$0__|Falsely Predict Active<br>__\$0__|
 |__Predicted -__|Falsely Predict Churn<br>__-\$150__|Correctly Predict Churn<br>__\$175__|
 
 
 ```python
 # Define cost-benefit matrix with input from business managers, other stakeholders, etc.
-costbenefit_mat = np.array([[0, -325],
+costbenefit_mat = np.array([[0, 0],
                             [-150, 175]])
 ```
 
