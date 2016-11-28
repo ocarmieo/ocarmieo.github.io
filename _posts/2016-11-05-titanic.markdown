@@ -557,4 +557,4 @@ plt.title('Survival by Total Family Size (not including self)');
 ![png](/img/titanic_eda/output_43_0.png)
 
 
-That wraps up EDA. In my next post, I will take this data through a machine learning workflow. The focus of the post will be on _process_ - the journey and not the destination 8) - so I would seek out additional resources if your goal is to make a dent on the Kaggle leaderboard. Stay tuned!
+That wraps up EDA. In my next post, I will take this data through a machine learning workflow using a different dataset. Stay tuned!
