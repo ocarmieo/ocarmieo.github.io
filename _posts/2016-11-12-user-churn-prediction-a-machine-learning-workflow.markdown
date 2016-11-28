@@ -6,17 +6,15 @@ tags: [machine-learning, sklearn, pipeline]
 image: /img/churn_ml/output_63_0.png
 ---
 
-In this post, I will be walking through a machine learning workflow for a customer churn prediction problem. The data is from a ride-sharing company and was pulled on July 1, 2014. Our objective for this post is to ___predict___ customers who are likely to churn so that the company can prevent them from doing so with offers/incentives using `sklearn`.
+In this post, I will be walking through a machine learning workflow for a customer churn prediction problem. The data is from a ride-sharing company and was pulled on July 1, 2014. Our objective for this post is to __predict__ customers who are likely to churn so that the company can prevent them from doing so with offers/incentives using `sklearn`.
 
-- I will extend this example in a separate post later to also help us __explain__ what features may be drivers of customer churn, by interpreting model coefficients and feature importances.
-
-For the purposes of this current post, our goal is to predict activity/churn with [optimal](#Metrics-for-Model-Comparison) results.
+I will extend this example in a separate post later to __explain__ what features may be drivers of customer churn by interpreting model coefficients and feature importances. For the purposes of this post, our goal is to predict activity/churn with [optimal performance](#Metrics-for-Model-Comparison).
 
 ### Background
 
-A typical machine learning workflow is shown in the image below. There are no universally correct steps to follow and this blog post is just one example. The "art" in the process is at the squiggly part of the line below, as you could go back and forth with testing different models, features, hyperparameters, and error measures.
+A typical machine learning workflow is shown in the image below. There are no universally correct steps to follow and this blog post shows one approach. The "art" in the process is at the squiggly part of the line below. You could go back and forth with testing different models, features, hyperparameters, error measures, ensembling...
 
-If there were a rule, it would be to __split the data__. It is important to hold out sets of your data that will remain __"unseen"__ by the model at each decision point in order to get a measure of model performance that is not inflated. If we used all of our data to train our model from the start, our model would learn that piece of training data really well (__overfitting__), but may fail to __generalize__ to other data it has not seen. As the model becomes more complex, training error will monotonically increase while test error will increase to a certain point, and then start to decrease once the model starts to overfit.
+It is important to hold out sets of your data that will remain __"unseen"__ by the model at each decision point in order to get a noninflated measure of model performance. If we used all of our data to train our model from the start, our model would learn that piece of training data really well (__overfit__), but may fail to __generalize__ to other data it has not seen. As the model becomes more complex, training error will monotonically increase while test error increases to a certain point, and then starts to decrease due to overfitting.
 
 ![train_val_test](/img/churn_ml/train_val_test.png)
 
@@ -961,15 +959,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 
 1. __Test accuracy__ - how many times the model gets it right (true positives and true negatives)
 - We have relatively balanced classes with active vs. churn users so accuracy is okay to use, but if we had more imbalanced classes (like in the case of predicting a rare disease), we may want to consider both precision and recall (F1 score) rather than just accuracy.
-
 2. __ROC plot and AUC (area under the curve)__ - shows the trade-off between __true positive rate (sensitivity)__ and __false positive rate (1 - specificity)__.
 - We will use this to compare models. Typically, the model with a higher AUC (the curve that is tucked closer towards the upper left corner) is the "better" model and you want to pick the threshold at the elbow. However, the "better" model could also depend on our __tolerance for false positives__. In the example below, the red and black curves are from 2 different models. If we require a lower false positive rate, the red model would be the better choice. If we don't mind a higher false positive rate, the black model may be better. [See below for our churn prediction ROC plot.](#roc-plot)
-
 <img src="/img/churn_ml/roc_example.jpg" width="350">
-
 3. __Profit curve__ - takes into account dollar costs/benefits associated with true positives, false positives, true negatives, and false negatives.
 - A profit curve can help optimize overall profit and help you select the best __model__ and __predicted probability threshold__. What's the cost to the company of your model predicts incorrectly? What's the added value if it predicts correctly? etc. [See more detail below for our churn prediction example.](#profit-curve)
-
 <img src="/img/churn_ml/profit_example.png" width="400">
 
 #### __Function Definitions__
@@ -1213,7 +1207,7 @@ The cost benefit matrix defined here is in dollars, in the following format:
 
 __Cost benefit matrix__
 
-We will assume that if the model predicts that a user will churn, we will spend \$150 dollars retaining them (in promotions, marketing, etc.). If the model does not predict when a user churns, we will lose an estimated \$325 in customer lifetime value. If we successfully identify a customer who will churn and manage to retain them, we will gain in customer lifetime value minus the cost of retaining them (\$325 - \$150).
+We will assume that if the model predicts that a user will churn, we will spend `$150` dollars retaining them (in promotions, marketing, etc.). If the model does not predict when a user churns, we will lose an estimated `$325` in customer lifetime value. If we successfully identify a customer who will churn and manage to retain them, we will gain in customer lifetime value minus the cost of retaining them (`$325` - `$150`).
 
 ||Actual +|Actual -|
 |-----------|------------------------|----------------------|
