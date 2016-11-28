@@ -1,14 +1,14 @@
 ---
-title: 'User Churn Prediction: A Machine Learning Workflow'
+title: 'User Churn Prediction: A Machine Learning Example'
 layout: post
 date: 2016-11-12 20:39:57
 tags: [machine-learning, sklearn, pipeline]
 image: /img/churn_ml/output_63_0.png
 ---
 
-In this post, I will be walking through a machine learning workflow for a customer churn prediction problem. The data is from a ride-sharing company and was pulled on July 1, 2014. Our objective for this post is to __predict__ customers who are likely to churn so that the company can prevent them from doing so with offers/incentives using `sklearn`.
+In this post, I will be walking through a machine learning workflow for a user churn prediction problem. The data is from a ride-sharing company and was pulled on July 1, 2014. Our objective for this post is to __predict__ users who are likely to churn so that the company can prevent them from doing so with offers/incentives using `sklearn`.
 
-I will extend this example in a separate post later to __explain__ what features may be drivers of customer churn by interpreting model coefficients and feature importances. For the purposes of this post, our goal is to predict activity/churn with [optimal performance](#Metrics-for-Model-Comparison).
+I will extend this example in a separate post later to __explain__ what features may be drivers of user churn by interpreting model coefficients and feature importances. For the purposes of this post, our goal is to predict activity/churn with [optimal performance](#Metrics-for-Model-Comparison).
 
 ### Background
 
@@ -210,13 +210,12 @@ df['active'] = (df['last_trip_date'] > date_cutoff).astype(int)
 ### 2. Handling Missing Values
 
 A few options:
+
 1. Remove all rows with missing values
 2. Impute the missing values (with mean, median, mode for a particular feature)
 3. Bin variables with missing values and add a level for 'missing'
 
-1 and 2 are appropriate when we are confident that values are missing at random.
-
-We have missing values for `avg_rating_by_driver`, `avg_rating_of_driver`, and `phone` features. First, let's see if values are missing at random by seeing whether there is an effect on whether a user is active. To do this, we can look at whether there is a signicant difference in percent active users in users who have vs. don't have missing values.
+The first two are appropriate when we are confident that values are missing at random. We have missing values for `avg_rating_by_driver`, `avg_rating_of_driver`, and `phone` features. Let's see if values are missing at random by seeing whether there is an effect on whether a user is active. To do this, we can look at whether there is a signicant difference in percent active users in users who have vs. don't have missing values.
 
 
 ```python
@@ -902,6 +901,7 @@ __Transformations__ - another way to do the above is by using a transformer from
 __Scaling__ your data is important when your variables have units on different orders of magnitude. You want to standardize values so that variables with a bigger unit don't drown out smaller ones. _(Example: determining key predictors of how quickly a house will sell - number of bedrooms vs. sale price in dollars)_
 
 It is good practice to use a pipeline for machine learning because it:
+
 1. Keeps track of all the transformations and scaling that you do on your data
 2. Easily __applies any processing you did on your training set to your test set__ (remember these from a few paragraphs ago?)
 
@@ -1059,7 +1059,7 @@ def plot_profit_curve(pipeline, costbenefit_mat, y_proba, y_test):
     plt.plot(np.linspace(0, 1, len(y_test)), profits, label = '{}, max profit ${} per user'.format(model_name, max_profit))
 ```
 
-#### Model Classifier Object
+#### __Model Classifier Object__
 I will use a __class object__ to store our models for easier comparison. It's generally good to start with a simple model (logistic regression) before jumping into more complex ones (random forest) to establish baseline performance. In some cases, simply predicting the outcome label with the mean of a feature could potentially perform better than a fancy random forest model.
 
 
@@ -1145,7 +1145,8 @@ class Classifiers(object):
         plt.show()        
 ```
 
-__Now let's compare 3 models:__
+__Let's compare 3 models:__
+
 - Logistic regression
 - Random forest
 - Gradient boosting
