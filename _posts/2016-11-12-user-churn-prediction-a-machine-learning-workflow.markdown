@@ -3,7 +3,7 @@ title: 'User Churn Prediction: A Machine Learning Example'
 layout: post
 date: 2016-11-12 20:39:57
 tags: [machine-learning, profit-curves, roc-curves, sklearn, pipeline]
-image: /img/churn_ml/output_81_0thumb.png
+image: /img/churn_ml/output_82_0thumb.png
 ---
 
 In this post, I will be walking through a machine learning workflow for a user churn prediction problem. The data is from a ride-sharing company and was pulled on July 1, 2014. Our objective for this post is to __predict__ users who are likely to churn so that the company can prevent them from doing so with offers/incentives using `sklearn`.
