@@ -7,7 +7,9 @@ permalink: /about/
 <img class="right profile-picture" src="/img/prof_pic.jpg">
 <b>WELCOME</b>
 
-Hi! I'm Carmen Lai. I am a data scientist in San Francisco with a background in neuroscience and industry experience in marketing analytics and strategy consulting. At 23andMe, I analyzed consumer data to draw insights for Product and Marketing teams. In my blog, I will share what I have learned from my career transition into data science, and use data to dive into some of my interests like music, psychology, and technology.
+Hi! I'm Carmen Lai. I'm a data scientist in San Francisco, currently working on new ways to leverage large-scale biomedical data to build tools for research and help people lead healthier lives. In my blog, I'll share some resources and learnings from my career transition into data science, as well as more technical deep dives on side projects in neuroscience, medicine, or some of my other interests like music and photography.
+
+More coming soon!
 
 <br/>
 <hr class="bio-hr"/>
