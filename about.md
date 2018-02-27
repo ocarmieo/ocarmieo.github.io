@@ -7,7 +7,7 @@ permalink: /about/
 <img class="right profile-picture" src="/img/prof_pic.jpg">
 <b>WELCOME</b>
 
-Hi! I'm Carmen Lai. I'm a data scientist in San Francisco, currently working on new ways to leverage large-scale biomedical data to build tools for research and help people lead healthier lives. In my blog, I'll share some resources and learnings from my career transition into data science, as well as more technical deep dives on side projects in neuroscience, medicine, or some of my other interests like music and photography.
+Hi! I'm Carmen Lai. I'm a data scientist in San Francisco, currently working on new ways to leverage large-scale biomedical data to build tools for scientists and help people lead healthier lives. In my blog, I'll share some resources and learnings from my career transition into data science, as well as more technical deep dives on side projects in neuroscience, healthcare, or some of my other interests like music and photography.
 
 More coming soon!
 
