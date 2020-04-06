@@ -1,3 +1,12 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 /**
  * Site header   **********************************************************
  */
@@ -88,6 +97,7 @@
  * Site footer  **********************************************************
  */
 .site-footer {
+    margin-top: auto;
     border-top: 1px solid $grey-color-dark;
     font-size: 10px;
     background-color: $grey-color-dark;
