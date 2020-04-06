@@ -29,4 +29,5 @@ permalink: /about/
   <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank"><i class="fa-2x fab fa-linkedin"></i></a>
   <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank"><i class="fa-2x fab fa-twitter-square"></i></a>
   <a href="https://youtube.com/{{ site.youtube_username }}" target="_blank"><i class="fa-2x fab fa-youtube-square"></i></a>
+  <a href="https://instagram.com/{{ site.instagram_shortname }}/" target="_blank"><i class="fa-2x fab fa-instagram-square"></i></a>
 </span>
