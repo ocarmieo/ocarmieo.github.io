@@ -49,7 +49,7 @@ $highlight-color: lighten($blue, 15%);
 
 $on-tiny: 400px;
 $on-palm: 600px;
-$on-laptop: 800px;
+$on-laptop: 900px;
 
 @mixin media-query($device) {
     @media screen and (max-width: $device) {

@@ -11,7 +11,9 @@ layout: default
             <h2 class="post-title">
               {{ post.title }}
             </h2>
-            {{ post.content | markdownify | strip_html | truncatewords:25 }}
+            <div class="post-snippet">
+              {{ post.content | markdownify | strip_html | truncatewords:25 }}
+            </div>
           </a>
         </div>
         <a class="post-image" href="{{ post.url | prepend: site.baseurl }}">
