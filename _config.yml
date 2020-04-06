@@ -7,11 +7,12 @@ description: > # this means to ignore newlines until "baseurl:"
   Google search results) and in your feed.xml site description.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://carmenlai.com/"
-twitter_username: carm_lai
+twitter_username: carmen_lai_
 github_username: ocarmieo
 linkedin_username: carmenlai
 youtube_username: carmenggg
 disqus_shortname: carmenlai
+google_scholar_user_id: SWQL1o0AAAAJ
 
 date_format_long: "%B %-d, %Y"
 

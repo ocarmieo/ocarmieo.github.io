@@ -242,10 +242,16 @@ body {
     }
 }
 
-.contacticon {
+.contact {
     font-size: 60px;
     display: block;
     margin: 10px;
+    .fa-stack {
+        font-size: 1em;
+        width: 1.75em;
+    }
+    i { vertical-align: middle; }
+
 }
 
 .center {
@@ -446,13 +452,22 @@ body {
     font-size: $caption_font_size;
 }
 
-.profile-picture {
-    opacity: $image-opacity;
-    width: 30%;
-    margin-bottom: 30px;
-    margin-left: 15px;
+.bio {
+    display: flex;
+    @include media-query($on-palm) {
+        flex-direction: column;
+    }
+    .bio-picture {
+        opacity: $image-opacity;
+        max-width: 30%;
+        margin-left: $horizontal-spacing-unit / 2;
+        @include media-query($on-palm) {
+            margin-top: $vertical-spacing-unit / 2;
+            margin-left: 0;
+            max-width: 100%;
+        }
+    }
 }
-
 .bio-hr {
-    clear: both;
+    margin: $vertical-spacing-unit 0;
 }
