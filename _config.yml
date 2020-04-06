@@ -13,7 +13,7 @@ linkedin_username: carmenlai
 youtube_username: carmenggg
 disqus_shortname: carmenlai
 
-date_format_long: "%B %-d, %Y — %H:%M %p"
+date_format_long: "%B %-d, %Y"
 
 # Pagination
 paginate: 3
