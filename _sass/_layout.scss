@@ -201,6 +201,7 @@ body {
         .post-image {
             max-width: 30%;
             @include media-query($on-palm) {
+                margin-top: $vertical-spacing-unit / 2;
                 max-width: 100%;
             }
             img {
@@ -226,6 +227,10 @@ body {
         margin-right: 4px;
         margin-bottom: 4px;
     }
+    .post-date {
+        width: 100%;
+    }
+
     .tag {
         $font-size: $small-font-size ;
         font-size: $font-size;
