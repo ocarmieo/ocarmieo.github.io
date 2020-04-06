@@ -2,7 +2,7 @@
 title: 'Exploratory Data Analysis Workflow: Titanic Dataset'
 layout: post
 date: 2016-11-05 21:29:04
-tags: [pandas, seaborn, data-cleaning, plotting]
+tags: [visualization]
 image: /img/titanic_eda/output_32_0.png
 ---
 

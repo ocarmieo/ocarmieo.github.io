@@ -2,7 +2,7 @@
 title: 'User Churn Prediction: A Machine Learning Example'
 layout: post
 date: 2016-11-12 20:39:57
-tags: [machine-learning, profit-curves, roc-curves, sklearn, pipeline]
+tags: [machine-learning, profit-curves]
 image: /img/churn_ml/output_82_0thumb.png
 ---
 
@@ -224,10 +224,10 @@ import scipy.stats as scs
 def run_ttest(feature, condition):
     '''
     Function to run t-test for a given column from a dataframe.
-    
+
     INPUT feature (pandas series): column of interest
     INPUT condition (boolean): condition to t-test by
-    OUTPUT: 
+    OUTPUT:
     '''
     ttest = scs.ttest_ind(feature[condition], feature[-condition])
     print '===== T-test for Difference in Means ====='
@@ -293,7 +293,7 @@ Since the missing values aren't random, we shouldn't remove or impute rows with 
 def add_binned_ratings(df, old_col, new_col):
     '''
     Add column for binned ratings.
-    
+
     INPUT:
     - df (full dataframe)
     - old_col (str): column name of average ratings
@@ -304,7 +304,7 @@ def add_binned_ratings(df, old_col, new_col):
     df[new_col] = pd.cut(df[old_col].copy(), bins=[0., 3.99, 4.99, 5],
                             include_lowest=True, right=True)
     df[new_col].cat.add_categories('Missing', inplace=True)
-    df[new_col].fillna('Missing', inplace=True)                        
+    df[new_col].fillna('Missing', inplace=True)
     return df
 
 df = add_binned_ratings(df, 'avg_rating_by_driver', 'bin_avg_rating_by_driver')
@@ -534,10 +534,10 @@ def roc_curve(y_proba, y_test):
     '''
     Return the True Positive Rates, False Positive Rates and Thresholds for the
     ROC curve plot.
-    
+
     INPUT y_proba (numpy array): predicted probabilities
     INPUT y_test (numpy array): true labels
-    OUTPUT (lists): lists of true positive rates, false positive rates, thresholds 
+    OUTPUT (lists): lists of true positive rates, false positive rates, thresholds
     '''
 
     thresholds = np.sort(y_proba)
@@ -562,7 +562,7 @@ def roc_curve(y_proba, y_test):
 
         fprs.append(fpr)
         tprs.append(tpr)
-    
+
     return tprs, fprs, thresholds.tolist()
 
 def plot_roc_curve(pipeline, y_pred, y_proba, y_test):
@@ -590,18 +590,18 @@ def standard_confusion_matrix(y_true, y_pred):
 def plot_profit_curve(pipeline, costbenefit_mat, y_proba, y_test):
     '''
     Plot profit curve.
-    
+
     INPUTS:
     - model object
     - cost benefit matrix in the same format as the confusion matrix above
     - predicted probabilities
     - actual labels
-    ''' 
+    '''
 
     # Profit curve data
     profits = [] # one profit value for each T (threshold)
     thresholds = sorted(y_proba, reverse=True)
-    
+
     # For each threshold, calculate profit - starting with largest threshold
     for T in thresholds:
         y_pred = (y_proba > T).astype(int)
@@ -609,7 +609,7 @@ def plot_profit_curve(pipeline, costbenefit_mat, y_proba, y_test):
         # Calculate total profit for this threshold
         profit = sum(sum(confusion_mat * costbenefit_mat)) / len(y_test)
         profits.append(profit)
-    
+
     # Profit curve plot
     model_name = pipeline.named_steps['classifier'].__class__.__name__
     max_profit = max(profits)
@@ -627,46 +627,46 @@ class Classifiers(object):
     '''
 
     def __init__(self, classifier_list):
-        
+
         self.classifiers = classifier_list
         self.classifier_names = [est.__class__.__name__ for est in self.classifiers]
-        
+
         # List to store pipeline objects for classifiers
         self.pipelines = []
 
     def create_pipelines(self, mapper):
-        
+
         for classifier in self.classifiers:
             self.pipelines.append(Pipeline([
                 ('featurize', mapper),
                 ('scale', StandardScaler()),
                 ('classifier', classifier)
                 ]))
-    
-    
+
+
     def train(self, X_train, y_train):
-        
+
         for pipeline in self.pipelines:
             pipeline.fit(X_train, y_train)
-        
-    
+
+
     def accuracy_scores(self, X_test, y_test):
-        
+
         # Lists to store classifier test scores
         self.accuracies = []
 
-        for pipeline in self.pipelines:            
+        for pipeline in self.pipelines:
             self.accuracies.append(pipeline.score(X_test, y_test))
 
         # Print results
         accuracy_df = pd.DataFrame(zip(self.classifier_names, self.accuracies))
         accuracy_df.columns = ['Classifier', 'Test Accuracies']
-        
+
         print accuracy_df
-            
+
 
     def plot_roc_curve(self, X_test, y_test):
-    
+
         # Plot ROC curve for each classifier
         plt.figure(figsize=(10, 10))
         for pipeline in self.pipelines:
@@ -677,7 +677,7 @@ class Classifiers(object):
         # 45 degree line
         x = np.linspace(0, 1.0, 20)
         plt.plot(x, x, color='grey', ls='--')
-        
+
         # Plot labels
         plt.xlabel('False Positive Rate (1 - Specificity)')
         plt.ylabel('True Positive Rate (Sensitivity, Recall)')
@@ -685,21 +685,21 @@ class Classifiers(object):
         plt.legend(loc='lower right')
         plt.show()
 
-        
+
     def plot_profit_curve(self, costbenefit_mat, X_test, y_test):
-        
+
         # Plot profit curve for each classifier
         plt.figure(figsize=(10, 10))
         for pipeline in self.pipelines:
             y_proba = pipeline.predict_proba(X_test)[:, 1]
             plot_profit_curve(pipeline, costbenefit_mat, y_proba, y_test)
-            
+
         # Plot labels
         plt.xlabel('Percentage of test instances (decreasing by score)')
         plt.ylabel('Profit')
         plt.title('Profit Curves')
         plt.legend(loc='lower left')
-        plt.show()        
+        plt.show()
 ```
 
 __Let's compare 3 models:__
