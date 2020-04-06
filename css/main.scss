@@ -23,7 +23,7 @@ $caption_color: #AEAEAE;
 
 // https://color.adobe.com/Green-Dark-Blue-color-theme-3854662/edit/?copy=true&base=2&rule=Custom&selected=1&name=Copy%20of%20Green%20%20Dark%20Blue&mode=rgb&rgbvalues=1,1,1,0.682353,0.682353,0.682353,0.901961,0.298039,0.4,0.176471,0.243137,0.313726,0.105882,0.737255,0.607843&swatchOrder=0,1,2,3,4
 $red: #E64C66;
-$blue: #375d81;
+$blue: rgba(15, 46, 61, 1);
 $green: #1BBC9B;
 
 $background-color: #FFFFFF;
@@ -36,13 +36,16 @@ $code-background-color: #f0f0f0;
 $code-font-size: 12px;
 $table-font-size: 12px;
 
+$nav-bg-color: $blue;
+$nav-link-color: white;
+
 $text-color: #666;
 $image-opacity: 0.9;
 $header-image-height: 300px;
 
 /* Set theme color *************************/
 $theme-color: $blue;
-$highlight-color: lighten($blue, 25%);
+$highlight-color: lighten($blue, 15%);
 
 $on-tiny: 400px;
 $on-palm: 600px;

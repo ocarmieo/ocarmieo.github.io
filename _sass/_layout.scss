@@ -11,19 +11,24 @@ body {
  * Site header   **********************************************************
  */
 .site-header {
-    border-bottom: 1px solid $grey-color-light;
-    background-color: rgba(255, 255, 255, .75);
+    background-color: $nav-bg-color;
     position: fixed;
     left: 0px;
     top: 0px;
     height: 56px;
     width: 100%;
     z-index: 50;
-    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0.6));
+    // background: linear-gradient(#{fade-out($nav-bg-color, 0)}, #{fade-out($nav-bg-color, .1)});
+    backdrop-filter:saturate(180%) blur(20px);
     -webkit-backdrop-filter:saturate(180%) blur(20px);
+    transition: 200ms ease-in-out background-color;
+    &.headroom--not-top {
+        background-color: fade-out($nav-bg-color, 0.15);
+    }
 }
 
 .site-title {
+    color: $nav-link-color;
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: $nav-height;
@@ -31,7 +36,7 @@ body {
 
     &:hover {
         text-decoration: none;
-        color: $theme-color;
+        color: $nav-link-color;
     }
 }
 
@@ -39,6 +44,7 @@ body {
     line-height: $nav-height;
 
     .page-link {
+        color: $nav-link-color;
         line-height: $base-line-height;
         letter-spacing: 2px;
 
@@ -98,17 +104,15 @@ body {
  */
 .site-footer {
     margin-top: auto;
-    border-top: 1px solid $grey-color-dark;
     font-size: 10px;
-    background-color: $grey-color-dark;
-    color: #AEAEAE;
+    color: $blue;
     left: 0px;
     bottom: 0px;
     width: 100%;
     text-align: center;
     a {
       text-decoration: underline;
-      color: #AEAEAE;
+      color: $blue;
     }
     .break {
         display: none;
