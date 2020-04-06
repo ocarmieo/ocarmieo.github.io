@@ -17,8 +17,9 @@ permalink: /about/
 </div>
 
 <hr class="bio-hr"/>
-<span class="contact center">
+<div class="contact center">
   <a href="mailto:{{ site.email }}"><i class="fa-2x fa fa-envelope-square"></i></a>
+  <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank"><i class="fa-2x fab fa-linkedin"></i></a>
   <a href="https://github.com/{{ site.github_username }}" target="_blank"><i class="fa-2x fab fa-github-square"></i></a>
   <a href='https://scholar.google.com/citations?user={{ site.google_scholar_user_id }}' target="_blank">
     <span class="fa-stack fa-2x">
@@ -26,8 +27,8 @@ permalink: /about/
       <i class="fas fa-flask fa-stack-1x fa-inverse"></i>
     </span>
   </a>
-  <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank"><i class="fa-2x fab fa-linkedin"></i></a>
   <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank"><i class="fa-2x fab fa-twitter-square"></i></a>
+  <br class="break"/>
   <a href="https://youtube.com/{{ site.youtube_username }}" target="_blank"><i class="fa-2x fab fa-youtube-square"></i></a>
   <a href="https://instagram.com/{{ site.instagram_shortname }}/" target="_blank"><i class="fa-2x fab fa-instagram-square"></i></a>
-</span>
+</div>

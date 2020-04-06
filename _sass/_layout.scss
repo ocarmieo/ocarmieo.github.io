@@ -257,7 +257,12 @@ body {
         width: 1.75em;
     }
     i { vertical-align: middle; }
-
+    .break {
+        display: none;
+        @include media-query($on-palm) {
+            display: block;
+        }
+    }
 }
 
 .center {
