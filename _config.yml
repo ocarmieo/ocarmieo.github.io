@@ -50,9 +50,12 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 highlighter: rouge
-gems:
+plugins:
   - jekyll-feed
   - jekyll-paginate
+  - jekyll-redirect-from
 exclude:
   - Gemfile
   - Gemfile.lock
+whitelist:
+- jekyll-redirect-from

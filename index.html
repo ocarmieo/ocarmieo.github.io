@@ -12,7 +12,11 @@ layout: default
               {{ post.title }}
             </h2>
             <div class="post-snippet">
-              {{ post.content | markdownify | strip_html | truncatewords:25 }}
+              {% if post.snippet %}
+                {{ post.snippet | truncatewords:25 }}
+              {% else %}
+                {{ post.content | markdownify | strip_html | truncatewords:25 }}
+              {% endif %}
             </div>
           </a>
         </div>

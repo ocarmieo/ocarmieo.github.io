@@ -10,4 +10,5 @@ gem 'jekyll', '~> 3.6'
 group :jekyll_plugins do
    gem "jekyll-feed"
    gem "jekyll-paginate"
+   gem "jekyll-redirect-from"
 end
