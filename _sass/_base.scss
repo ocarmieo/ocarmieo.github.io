@@ -97,9 +97,10 @@ a {
 article a {
     color: $highlight-color;
     font-weight: 100;
+    text-decoration: underline;
 
     &:hover {
-        text-decoration: none;
+        text-decoration: underline;
     }
 }
 
