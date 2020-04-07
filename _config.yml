@@ -55,7 +55,6 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-redirect-from
-  - jekyll-target-blank
 exclude:
   - Gemfile
   - Gemfile.lock
