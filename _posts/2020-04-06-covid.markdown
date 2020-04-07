@@ -96,7 +96,7 @@ Perhaps the most comprehensive data we have to date for asymptomatic cases came 
     <i>Early sentiment on mask-wearing in the US. Source: <a target="_blank" href="https://twitter.com/Surgeon_General/status/1233725785283932160">Twitter</a></i>
 </div>
 
-However, population-level data on masks is also limited in other countries. One meta-analysis study published years after the SARS outbreak in 2003 concluded that mask-wearing of any kind was <a target="_blank" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2190272/">68% effective</a>, compared to hand-washing 10+ times a day at 55% effectiveness. While there is research evidence (and perhaps common sense) that point to mask-wearing as beneficial for the community, <a target="_blank" href="https://www.who.int/news-room/detail/03-03-2020-shortage-of-personal-protective-equipment-endangering-health-workers-worldwide">worldwide PPE shortages</a> for frontline healthcare workers is also a reality and an important consideration. The CDC has since revised its stance on mask-wearing to <a target="_blank" href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/cloth-face-cover.html">recommend cloth face masks</a>. If there is a high prevalence of asymptomatic spreaders in our community, mask-wearing coupled with current social distancing measures can prevent community spread more effectively, and in turn, reduce strain on the medical system.
+However, population-level data on masks is also limited in other countries. One meta-analysis study published years after the SARS outbreak in 2003 concluded that mask-wearing of any kind was <a target="_blank" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2190272/" title="thanks JJ">68% effective</a>, compared to hand-washing 10+ times a day at 55% effectiveness. While there is research evidence (and perhaps common sense) that point to mask-wearing as beneficial for the community, <a target="_blank" href="https://www.who.int/news-room/detail/03-03-2020-shortage-of-personal-protective-equipment-endangering-health-workers-worldwide">worldwide PPE shortages</a> for frontline healthcare workers is also a reality and an important consideration. The CDC has since revised its stance on mask-wearing to <a target="_blank" href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/cloth-face-cover.html">recommend cloth face masks</a>. If there is a high prevalence of asymptomatic spreaders in our community, mask-wearing coupled with current social distancing measures can prevent community spread more effectively, and in turn, reduce strain on the medical system.
 
 ### **We don’t know everything, but what can we do?**
 
@@ -107,6 +107,7 @@ My goal with writing this post is to ask you to dig deeper past the headlines, s
 
 * How has the **case-fatality rate** changed since this post, and why?
 * How would you propose that we estimate the prevalence of **asymptomatic cases** in the US population, assuming current testing limitations?
+* How does data translate to **policy**? How low do the new case numbers need to be for us to begin to relax social distancing measures?
 
 <div class="center image-container">
     <img src="/img/covid/8_xkcd.png">
@@ -145,4 +146,4 @@ Here are sources of data that I have found reliable, without the sensationalist 
 **Data analysis**
 
 * <a target="_blank" href="https://www.kaggle.com/covid-19-contributions">Kaggle</a> provides a variety of datasets (on published literature, county-level populations, hospital resources, past outbreaks, etc.) and users can use this data to answer questions that are still unclear about COVID-19. 
-* <a target="_blank" href="https://www.covid19-archive.com/">News headlines archive</a></p>, may be interesting to analyze sentiment over time
+* <a target="_blank" href="https://www.covid19-archive.com/">News headlines archive</a>, may be interesting to analyze sentiment over time
