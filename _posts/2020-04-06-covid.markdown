@@ -4,6 +4,7 @@ layout: post
 date: 2020-04-06 14:46:04
 tags: [covid-19, disease-risk-modeling]
 image: /img/covid/0_brian-mcgowan-unsplash.jpg
+snippet: Misinformation can be particularly harmful during a pandemic, and major tech companies are working to stop fake news in its tracks. With COVID-19, even real news can change within the hour...
 ---
 
 <div class="center" style="max-width: 85%">
