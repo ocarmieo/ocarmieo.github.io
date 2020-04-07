@@ -1,10 +1,17 @@
 <div class="post-meta">
+  {% if include.show_author and include.post.author %}
+    <div class="post-author">
+      {{ include.post.author }}
+    </div>
+  {% endif %}
   <div class="post-date">
     {{ include.post.date | date: site.date_format_long }}
   </div>
   {% if include.post.tags %}
-    {% for tag in include.post.tags %}
-      <a class="tag" href="/tags/#{{ tag }}">{{ tag }}</a>
-    {% endfor %}
+    <div class="tags">
+      {% for tag in include.post.tags %}
+        <a class="tag" href="/tags/#{{ tag }}">{{ tag }}</a>
+      {% endfor %}
+  </div>
   {% endif %}
 </div>

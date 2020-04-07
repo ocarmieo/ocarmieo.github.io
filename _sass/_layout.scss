@@ -217,21 +217,32 @@ body {
 
 .post-meta {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
+    flex-direction: column;
     @include media-query($on-palm) {
         margin-bottom: $vertical-spacing-unit / 2;
-    }
-    & > * {
-        margin-right: 4px;
-        margin-bottom: 4px;
     }
     .post-date {
         width: 100%;
     }
 
+    .post-author {
+        color: $text-color;
+        $font-size: 16px;
+        font-weight: 400;
+        letter-spacing: .1em;
+        font-size: $font-size;
+        line-height: $font-size * 1.2;
+    }
+
+    .tags {
+        flex-wrap: wrap;
+        align-content: flex-start;
+        display: flex;
+        flex-direction: row;
+    }
     .tag {
+        margin-right: 4px;
+        margin-bottom: 4px;
         $font-size: $small-font-size;
         font-size: $font-size;
         line-height: $font-size * 1.2;
