@@ -2,7 +2,7 @@
 title: 'User Churn Prediction: A Machine Learning Example'
 layout: post
 date: 2016-11-12 20:39:57
-tags: [machine-learning, profit-curves]
+tags: [machine-learning, product-analytics]
 image: /img/churn_ml/output_82_0thumb.png
 ---
 

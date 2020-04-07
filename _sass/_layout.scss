@@ -235,7 +235,6 @@ body {
         $font-size: $small-font-size;
         font-size: $font-size;
         line-height: $font-size * 1.2;
-        flex: 0 0 fit-content;
         background-color: transparent;
         color: $blue;
         border: 1px solid $blue;
@@ -482,3 +481,17 @@ body {
 .bio-hr {
     margin: $vertical-spacing-unit 0;
 }
+
+article {
+    .center {
+        margin: $vertical-spacing-unit auto;
+    }
+
+    .image-container {
+        max-width: 65%;
+        @include media-query($on-palm) {
+            max-width: 100%;
+        }
+    }
+}
+
