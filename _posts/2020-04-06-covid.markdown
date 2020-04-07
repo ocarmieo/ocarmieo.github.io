@@ -5,6 +5,14 @@ date: 2020-04-06 14:46:04
 tags: [covid-19, disease-risk-modeling]
 image: /img/covid/0_brian-mcgowan-unsplash.jpg
 ---
+
+<div class="center" style="max-width: 85%">
+    <img src="/img/covid/0_brian-mcgowan-unsplash.jpg" alt="0_brian-mcgowan-unsplash.jpg">
+    <i>
+        Photo credit: <a href="https://unsplash.com/@sushioutlaw">Brian McGowan</a>
+    </i>
+</div>
+
 ### **TLDR**
 
 * COVID-19 poses an unprecedented challenge because there are many layers of uncertainty:
