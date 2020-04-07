@@ -13,9 +13,9 @@ layout: default
             </h2>
             <div class="post-snippet">
               {% if post.snippet %}
-                {{ post.snippet | truncatewords:25 }}
+                {{ post.snippet | truncatewords:50 }}
               {% else %}
-                {{ post.content | markdownify | strip_html | truncatewords:25 }}
+                {{ post.content | markdownify | strip_html | truncatewords:50 }}
               {% endif %}
             </div>
           </a>
