@@ -18,7 +18,7 @@ google_scholar_user_id: SWQL1o0AAAAJ
 date_format_long: "%B %-d, %Y"
 
 # Pagination
-paginate: 3
+paginate: 4
 paginate_path: "/blog/page:num/"
 
 # Collections
