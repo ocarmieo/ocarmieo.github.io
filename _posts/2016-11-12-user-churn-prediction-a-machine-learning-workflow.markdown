@@ -316,7 +316,7 @@ df.drop(['avg_rating_by_driver', 'avg_rating_of_driver'], axis=1, inplace=True)
 
 ### 3. Exploratory Data Analysis
 
-I won't go into EDA extensively here since it was covered in my [last post](http://carmenlai.com/2016/11/05/titanic.html), but it's always good to have some hypotheses in mind before diving into the data.
+It's always good to have some hypotheses in mind before diving into modeling, and exploratory analysis can help in generating them.
 - Users who use the app more (higher `trips_in_first_30_days` and `weekday_pct`) are probably more likely to remain active
 - Users who experience more surge (`avg_surve`) may be less satisfied and more likely to churn
 - `luxury_car_user` may be the premium users with higher willingness to pay who are less likely to churn
