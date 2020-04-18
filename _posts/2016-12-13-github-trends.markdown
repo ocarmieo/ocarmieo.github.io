@@ -3,17 +3,17 @@ title: 'Github Trends: a network-based recommender for open source packages'
 layout: post
 date: 2016-12-13
 tags: [network-analysis, recommender-system]
-image: https://github.com/ocarmieo/github-trends/blob/master/img/graph.gif?raw=true
+image: /img/github_trends/graph.gif
 snippet: Open source software has accelerated innovation and enabled collaboration for people and organizations all over the world. However, discoverability of new technologies has not caught up...
 ---
 
 <p align="center"><i>Data science capstone project mining open source code for insights, built in <b>2 weeks</b></i></p>
 <div class="center" style="max-width: 85%">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/cover.png?raw=true" align="middle"/>
+<img src="/img/github_trends/cover.png" align="middle"/>
 </div>
 
 <div class="center" style="max-width: 85%">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/graph.gif?raw=true" align="middle"/>
+<img src="/img/github_trends/graph.gif" align="middle"/>
 </div>
 <h4 align="center">Figure 1. The Python package universe, compared to those taught at Galvanize.</h4>
 
@@ -29,7 +29,7 @@ snippet: Open source software has accelerated innovation and enabled collaborati
     * [4.2 Node Importance](#42-node-importance)
     * [4.3 Node Similarity](#43-node-similarity)
     * [4.4 Communities](#44-communities)
-5. [Text Mining and Prediction](#5-text-mining-and-prediction) 
+5. [Text Mining and Prediction](#5-text-mining-and-prediction)
 6. [The Web App](#6-the-web-app)
 7. [About the Author](#7-about-the-author)
 8. [References](#8-references)
@@ -47,21 +47,21 @@ __GitHub Trends__ was created by mining open source code for insights on open so
 
 ## 2 The Database
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/dataprocess.png?raw=true" align="middle"/>
+<img src="/img/github_trends/dataprocess.png" align="middle"/>
 <h4 align="center">Figure 2. Data workflow from raw code to web app.</h4>
 </p>
 
 The data I used came from two tables that totaled 2TB in size on BigQuery. The `contents` table included code at the file level, and the `commits` table included timestamps at the commit level. For the scope of this 2-week project, I limited my data to the __Python language__ which is 7% of repos, and used an extract available for [Python contents](https://bigquery.cloud.google.com/table/fh-bigquery:github_extracts.contents_py) that made the joins less massive.
 
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/percent_repos.png?raw=true" width="350" align="middle"/>
+<img src="/img/github_trends/percent_repos.png" width="350" align="middle"/>
 <h4 align="center">Figure 3. Languages used in GitHub repos. [<a href="https://datastudio.google.com/#/org//reporting/0ByGAKP3QmCjLdXBlWVdrZU5yZW8/page/yFI">image source</a>]</h4>
 </p>
 
-When querying the data, I wanted to take advantage of Google's compute engine and do as much data processing that made sense using SQL on BigQuery prior to exporting the data. This included extracting package imports using regular expressions. My final table had file IDs along with each file's package imports nested. You can see the SQL queries here: [bigquery.sql](https://github.com/ocarmieo/github-trends/blob/master/src/bigquery.sql).
+When querying the data, I wanted to take advantage of Google's compute engine and do as much data processing that made sense using SQL on BigQuery prior to exporting the data. This included extracting package imports using regular expressions. My final table had file IDs along with each file's package imports nested. You can see the SQL queries here: [bigquery.sql](/src/github_trends/bigquery.sql).
 
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/regex.png?raw=true" width="500" align="middle"/>
+<img src="/img/github_trends/regex.png" width="500" align="middle"/>
 <h4 align="center">Figure 4. Package name extraction from Python code.</h4>
 </p>
 
@@ -70,16 +70,16 @@ The tricky part in handling dates was that there were both author dates and comm
 To prepare the data for easy querying on the web app, I stored the count of package imports in a PostgreSQL database, and __set package name and date as indices__ of the table.
 
 ### 2.2 Network Data
-To get the edge (package connections) pairs, I need to count each combination of packages for each file. Doing this in SQL would involve self joins and a lot of computation, so I decided to export the data and use MapReduce to parallelize the process. This could be done for __4 million files in a couple of minutes__ using Amazon EMR (Elastic MapReduce) to split the work across multiple machines. You can see the MapReduce code here: [mr_edges.py](https://github.com/ocarmieo/github-trends/blob/master/src/mr_edges.py) and [mr_nodes.py](https://github.com/ocarmieo/github-trends/blob/master/src/mr_nodes.py).
+To get the edge (package connections) pairs, I need to count each combination of packages for each file. Doing this in SQL would involve self joins and a lot of computation, so I decided to export the data and use MapReduce to parallelize the process. This could be done for __4 million files in a couple of minutes__ using Amazon EMR (Elastic MapReduce) to split the work across multiple machines. You can see the MapReduce code here: [mr_edges.py](/src/github_trends/mr_edges.py) and [mr_nodes.py](/src/github_trends/mr_nodes.py).
 
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/mapreduce.png?raw=true" width="900" align="middle"/>
+<img src="/img/github_trends/mapreduce.png" width="900" align="middle"/>
 <h4 align="center"> Figure 5. MapReduce to parallelize computation for edge counts.</h4>
 </p>
 
 ## 3 Interactive Visualization of Usage Trends
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/mpld3.gif?raw=true" width="800" align="middle"/>
+<img src="/img/github_trends/mpld3.gif" width="800" align="middle"/>
 <h4 align="center"> Figure 6. Interactive plot created using mpld3.</h4>
 </p>
 
@@ -89,12 +89,12 @@ This plot was made using [`mpld3`](https://mpld3.github.io/), a Python toolkit t
 
 ## 4 Network Analysis and Recommender
 
-The network of packages had 60,000 nodes and 850,000 edges after I removed pairs that occured less than 5 times. I used [`networkx`](https://networkx.github.io/documentation/networkx-1.10/tutorial/index.html) in Python to organize the network data, node attributes, and edge attributes into a .gml file that can be read into [Gephi](https://gephi.org/) for __visualization__. I used [`igraph`](http://igraph.org/python/doc/igraph.Graph-class.html) in Python to power the __recommender__. You can see the network analysis code here: [network_recommender.py](https://github.com/ocarmieo/github-trends/blob/master/src/network_recommender.py).
+The network of packages had 60,000 nodes and 850,000 edges after I removed pairs that occured less than 5 times. I used [`networkx`](https://networkx.github.io/documentation/networkx-1.10/tutorial/index.html) in Python to organize the network data, node attributes, and edge attributes into a .gml file that can be read into [Gephi](https://gephi.org/) for __visualization__. I used [`igraph`](http://igraph.org/python/doc/igraph.Graph-class.html) in Python to power the __recommender__. You can see the network analysis code here: [network_recommender.py](/src/github_trends/network_recommender.py).
 
 The goal of the project is __to expose packages that may not be the most widely used, but are the most relevant and have the strongest relationships__. Metrics like __pointwise mutual information__, __eigenvector centrality__, and __Jaccard similarity__ were chosen to highlight strong relationships even for less popular packages.
 
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/compare_graphs.png?raw=true" width="900" align="middle"/>
+<img src="/img/github_trends/compare_graphs.png" width="900" align="middle"/>
 <h4 align="center">Figure 7. Influence of edge weights and centrality metric on network visualization.</h4>
 </p>
 
@@ -102,14 +102,14 @@ The goal of the project is __to expose packages that may not be the most widely 
 Edge weights represent the strength of a relationship between two packages. However, if I simply determined the strength of a relationship based on edge counts (number of times they co-occur), smaller packages would get overshadowed by large packages even if they had a stronger relationship. Instead, I decided to use __pointwise mutual information (PMI)__, which not only takes into the joint probability of 2 packages occuring, but also their individual probabilities. This value can be normalized between [-1,+1].
 
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/pmi.png?raw=true" width="250" align="middle"/>
+<img src="/img/github_trends/pmi.png" width="250" align="middle"/>
 </p>
 
 To visualize the network, I used a __force-directed layout__ in Gephi called ForceAtlas 2, which took into account the edge weights in the calculation of attraction and repulsion forces. Packages with a strong relationship attract, while packages with weak or no relationship repel. Gephi has [different layouts](https://gephi.org/tutorials/gephi-tutorial-layouts.pdf) depending on what features you want to highlight.
 
 ### 4.2 Node Importance
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/centralities.png?raw=true" width="800" align="middle"/>
+<img src="/img/github_trends/centralities.png" width="800" align="middle"/>
 <h4 align="center">Figure 8. Comparison of different centrality metrics on the same graph. [<a href="http://www.slideshare.net/gcheliotis/social-network-analysis-3273045">image source</a>]</h4>
 </p>
 
@@ -126,7 +126,7 @@ To make similarity recommendations for a given package of interest, I want to id
 Jaccard similarity is used for ranked recommendations alongside pointwise mutual information ("weighted co-occurence"), and a raw edge count. I found that the raw count typically returns recommendations that are more generally popular, while the left two metrics return more highly relevant or specific packages. In the example below for `networkx` (a package for network analysis), top recommended packages include `Bio` (computational biology), `nltk` (natural language processing), and `pycxsimulator` (dynamic graph simulation), all of which point to more specific use cases for `networkx`.
 
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/networkx_ex.png?raw=true" align="middle"/>
+<img src="/img/github_trends/networkx_ex.png" align="middle"/>
 <h4 align="center">Figure 9. Screenshot from the network-based recommender app. [<a href="#6-the-web-app">see demo</a>]</h4>
 </p>
 
@@ -155,15 +155,15 @@ Analysis of package description text coming soon. Workstreams I have tried:
 The remaining challenge is mapping the __package import name__ (used in this project) and the __pip install name__. For example, in order to import `sklearn`, you need to install `scikit-learn`. Please reach out if you have a suggested solution!
 
 ## 6 The Web App
-The web app was built using Flask [app.py](https://github.com/ocarmieo/github-trends/blob/master/app/app.py) and consists of two components:
+The web app was built using Flask [app.py](/app/github_trends/app.py) and consists of two components:
 + __Interactive visualization of package usage trends__
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/time.gif?raw=true" width="800" align="middle"/>
+<img src="/img/github_trends/time.gif" width="800" align="middle"/>
 </p>
 + __Network-based recommender__ - allows users to traverse through the network based on similar or complementary packages
     * Ranked recommendations from __Jaccard similarity__ and __normalized pointwise mutual information__ tend to return packages that may be less widely used but are more highly relevant, while those from a raw count are more generally popular packages
 <p align="center">
-<img src="https://github.com/ocarmieo/github-trends/blob/master/img/rec.gif?raw=true" width="800" align="middle"/>
+<img src="/img/github_trends/rec.gif" width="800" align="middle"/>
 </p>
 
 Currently working to add package descriptions and topics. __Live app coming soon - stay tuned!__
