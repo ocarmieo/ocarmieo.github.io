@@ -7,7 +7,7 @@ image: /img/github_trends/graph.gif
 snippet: Open source software has accelerated innovation and enabled collaboration for people and organizations all over the world. However, discoverability of new technologies has not caught up...
 ---
 
-<p align="center"><i>Data science capstone project mining open source code for insights, built in <b>2 weeks</b></i></p>
+<p align="center"><i>Data science capstone <a href="https://github.com/ocarmieo/github-trends">project</a> mining open source code for insights, built in <b>2 weeks</b></i></p>
 <div class="center" style="max-width: 85%">
 <img src="/img/github_trends/cover.png" align="middle"/>
 </div>
