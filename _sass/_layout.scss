@@ -481,9 +481,12 @@ body {
     @include media-query($on-palm) {
         flex-direction: column;
     }
+    .bio-description {
+        flex: 3;
+    }
     .bio-picture {
+        flex: 2;
         opacity: $image-opacity;
-        max-width: 30%;
         margin-left: $horizontal-spacing-unit / 2;
         @include media-query($on-palm) {
             margin-top: $vertical-spacing-unit / 2;
