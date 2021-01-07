@@ -16,7 +16,7 @@ permalink: /about/
       I <a target="_blank" href="https://github.com/ocarmieo">code</a> and <a target="_blank" href="https://scholar.google.com/citations?user=SWQL1o0AAAAJ">publish research</a>. I love <a target="_blank" href="https://youtube.com/carmenggg">music</a> and <a target="_blank" href="https://instagram.com/carmenphotog/">photography</a>.
     </p>
   </div>
-  <div class="bio-picture"><img src="/img/headshot.jpeg"/></div>
+  <div class="bio-picture"><img alt="Carmen Lai" src="/img/headshot.jpeg"/></div>
 </div>
 
 <hr class="bio-hr"/>
